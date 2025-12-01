@@ -7,24 +7,60 @@
       background:#111827;
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     }
-    .page{
+    .mt-page{
       width:320px;
       min-height:100vh;
       background:#ffffff;
     }
-    .section{
+    .mt-section{
       width:100%;
       position:relative;
       background:#ffffff;
       overflow:hidden;
       border-bottom:1px solid #e5e7eb;
     }
-  </style> </head> <body> <div class="page">
+  </style> </head> <body> <div class="mt-page">
 
-    <div class="section" style="height:560px;">
-      <div style="position:absolute;left:61px;top:42px;font-size:25px;color:#111827;">Loyiha builder</div>
-      <div style="position:absolute;left:15px;top:87.5px;font-size:18px;color:#111827;">Siz endi kodsiz ham sayt yarata olasiz</div>
-      <img src="https://github.com/sardorbek07/umra/blob/main/Group_9932.webp?raw=true" style="position:absolute;left:19px;top:181.49999618530273px;width:260px;height:248px;display:block;">
-      <a href="#" style="position:absolute;left:3px;top:421.0000114440918px;font-size:14px;color:#ffffff;background:#ff0000;border-radius:999px;padding:8px 16px;border:none;cursor:pointer;width:290px;;height:60px;">Royxatdan o&#039;tish</a>
+    <div class="mt-section" style="height:560px;background:#ffffff;">
+      <div data-mt-timer="1" data-mt-hours="0" data-mt-minutes="5" data-mt-seconds="0" style="position:absolute;left:122px;top:239.50001525878906px;font-size:20px;color:#111827">00:00</div>
+      <img src="https://placehold.co/300x200/png" style="position:absolute;left:18px;top:65px;width:260px;height:160px;display:block;">
+      <div style="position:absolute;left:28px;top:25.5px;font-size:15px;color:#111827;">Yangi mQwmmeatn kenenenenenene</div>
+      <a href="#" style="position:absolute;left:35px;top:287.50001525878906px;font-size:13px;color:#f9fafb;background:#111827;border-radius:5px;padding:8px 16px;border:none;cursor:pointer;width:220px;;display:flex;align-items:center;justify-content:center;text-decoration:none">Tugma</a>
     </div>
-  </div> </body> </html>
+  </div>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  var timers=document.querySelectorAll("[data-mt-timer]");
+  timers.forEach(function(el){
+    var hours=parseInt(el.getAttribute("data-mt-hours"))||0;
+    var minutes=parseInt(el.getAttribute("data-mt-minutes"))||0;
+    var seconds=parseInt(el.getAttribute("data-mt-seconds"))||0;
+    var total=hours*3600+minutes*60+seconds;
+    function formatTime(t){
+      var h=Math.floor(t/3600);
+      var m=Math.floor((t%3600)/60);
+      var s=t%60;
+      if(h>0){
+        return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+      }
+      return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+    }
+    if(!total){
+      el.textContent="00:00";
+      return;
+    }
+    var remaining=total;
+    el.textContent=formatTime(remaining);
+    var interval=setInterval(function(){
+      remaining--;
+      if(remaining<=0){
+        clearInterval(interval);
+        el.textContent="00:00";
+      }else{
+        el.textContent=formatTime(remaining);
+      }
+    },1000);
+  });
+});
+</script>
+</body> </html>
