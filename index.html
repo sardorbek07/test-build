@@ -6,9 +6,25 @@
   <title>Sahifa</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    body{margin:0;display:flex;justify-content:center;background:#0C1014;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;}
-    .mt-page{width:320px;min-height:100vh;background:#ffffff;overflow:hidden;position:relative;}
-    .mt-section{width:320px;position:relative;background:#ffffff;overflow:hidden;border-bottom:1px solid #e5e7eb;}
+    body{
+      margin:0;
+      background:#0C1014;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    }
+    .mt-page{
+      width:320px;
+      background:#ffffff;
+      position:relative;
+      margin:0 auto;
+      overflow:hidden;
+    }
+    .mt-section{
+      width:320px;
+      position:relative;
+      background:#ffffff;
+      overflow:hidden;
+      border-bottom:1px solid #e5e7eb;
+    }
   </style>
 </head>
 <body>
@@ -23,27 +39,39 @@
   </div>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
-var timers=document.querySelectorAll("[data-mt-timer]");
-timers.forEach(function(el){
-var hours=parseInt(el.getAttribute("data-mt-hours"))||0;
-var minutes=parseInt(el.getAttribute("data-mt-minutes"))||0;
-var seconds=parseInt(el.getAttribute("data-mt-seconds"))||0;
-var total=hours*3600+minutes*60+seconds;
-function formatTime(t){
-var h=Math.floor(t/3600);
-var m=Math.floor((t%3600)/60);
-var s=t%60;
-if(h>0){return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
-return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
-if(!total){el.textContent="00:00";return;}
-var remaining=total;
-el.textContent=formatTime(remaining);
-var interval=setInterval(function(){
-remaining--;
-if(remaining<=0){clearInterval(interval);el.textContent="00:00";}
-else{el.textContent=formatTime(remaining);}
-},1000);
-});
+  var page=document.querySelector(".mt-page");
+  function mtAutoscale(){
+    if(!page) return;
+    var screenWidth=window.innerWidth||document.documentElement.clientWidth;
+    var baseWidth=320;
+    var zoom=screenWidth/baseWidth;
+    page.style.transformOrigin="top center";
+    page.style.transform="scale("+zoom+")";
+    document.body.style.height=(page.offsetHeight*zoom)+"px";
+  }
+  if(page){ mtAutoscale(); window.addEventListener("resize",mtAutoscale); }
+  var timers=document.querySelectorAll("[data-mt-timer]");
+  timers.forEach(function(el){
+    var hours=parseInt(el.getAttribute("data-mt-hours"))||0;
+    var minutes=parseInt(el.getAttribute("data-mt-minutes"))||0;
+    var seconds=parseInt(el.getAttribute("data-mt-seconds"))||0;
+    var total=hours*3600+minutes*60+seconds;
+    function formatTime(t){
+      var h=Math.floor(t/3600);
+      var m=Math.floor((t%3600)/60);
+      var s=t%60;
+      if(h>0){return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
+      return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+    }
+    if(!total){el.textContent="00:00";return;}
+    var remaining=total;
+    el.textContent=formatTime(remaining);
+    var interval=setInterval(function(){
+      remaining--;
+      if(remaining<=0){clearInterval(interval);el.textContent="00:00";}
+      else{el.textContent=formatTime(remaining);}
+    },1000);
+  });
 });
 <\/script>
 </body>
