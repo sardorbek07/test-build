@@ -32,16 +32,31 @@
   <div class="mt-page">
 
     <div class="mt-section" style="height:800px;background:#000000;background-image:url(https://github.com/sardorbek07/test-build/blob/main/las%20mobile%20(23).png?raw=true);background-size:cover;background-position:center center;">
-      <img src="https://github.com/sardorbek07/test-build/blob/main/las%20mobile%20(23).png?raw=true" style="position:absolute;left:4px;top:2.5px;width:292px;height:794px;display:block;">
-      <div style="position:absolute;left:14px;top:92.5px;font-size:23px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Samarqand shahri markazidan eng qulay shartlarda Biznes klass xonadon xarid qiling!</div>
-      <div style="position:absolute;left:165px;top:15px;font-size:16px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">20-dekabr 
+      <div style="position:absolute;left:6px;top:99px;font-size:23px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Samarqand shahri markazidan eng qulay shartlarda Biznes klass xonadon xarid qiling!</div>
+      <div style="position:absolute;left:92px;top:16px;font-size:16px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">20-dekabr 
 20:00</div>
-      <div style="position:absolute;left:187px;top:33.5px;font-size:13px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Taqdimot sanasi</div>
-      <img src="https://github.com/sardorbek07/test-build/blob/main/Group%202089345763.png?raw=true" style="position:absolute;left:13px;top:216.5px;width:257px;height:48px;display:block;">
+      <div style="position:absolute;left:101px;top:42.33750915527344px;font-size:13px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Taqdimot sanasi</div>
       <a href="#" style="position:absolute;left:23px;top:288.5px;font-size:12px;color:#000000;background:#eccb6f;border-radius:999px;padding:8px 16px;border:none;cursor:pointer;width:247px;;height:45px;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">JOY BAND QILISH</a>
-      <img src="https://github.com/sardorbek07/test-build/blob/main/Group%202089345764%20(2).png?raw=true" style="position:absolute;left:13px;top:1px;width:122px;height:70px;display:block;">
-      <img src="https://github.com/sardorbek07/test-build/blob/main/Group%202089345765.png?raw=true" style="position:absolute;left:18px;top:350px;width:263px;height:126px;display:block;">
     </div>
   </div>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  var page=document.querySelector(".mt-page");
+  if(!page)return;
+  function adjust(){
+    var screenWidth=window.innerWidth||document.documentElement.clientWidth;
+    var baseWidth=320;
+    if(screenWidth>=480&&screenWidth<768)baseWidth=480;
+    else if(screenWidth>=768&&screenWidth<1200)baseWidth=768;
+    else if(screenWidth>=1200)baseWidth=1200;
+    var zoomLevel=screenWidth/baseWidth;
+    page.style.transformOrigin="top center";
+    page.style.transform="scale("+zoomLevel+")";
+  }
+  adjust();
+  window.addEventListener("resize",adjust);
+});
+</script>
 </body>
 </html>
