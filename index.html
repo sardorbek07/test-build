@@ -43,24 +43,5 @@
       <img src="https://github.com/sardorbek07/test-build/blob/main/Group%202089345765.png?raw=true" style="position:absolute;left:18px;top:350px;width:263px;height:126px;display:block;">
     </div>
   </div>
-
-<script>
-document.addEventListener("DOMContentLoaded",function(){
-  var page=document.querySelector(".mt-page");
-  if(!page)return;
-  function adjust(){
-    var screenWidth=window.innerWidth||document.documentElement.clientWidth;
-    var baseWidth=320;
-    if(screenWidth>=480&&screenWidth<768)baseWidth=480;
-    else if(screenWidth>=768&&screenWidth<1200)baseWidth=768;
-    else if(screenWidth>=1200)baseWidth=1200;
-    var zoomLevel=screenWidth/baseWidth;
-    page.style.transformOrigin="top center";
-    page.style.transform="scale("+zoomLevel+")";
-  }
-  adjust();
-  window.addEventListener("resize",adjust);
-});
-</script>
 </body>
 </html>
