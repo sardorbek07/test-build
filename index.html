@@ -8,17 +8,15 @@
     *{box-sizing:border-box;margin:0;padding:0}
     body{
       margin:0;
-      background:#0C1014;
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
       display:flex;
       justify-content:center;
-      align-items:flex-start;
-      min-height:100vh;
+      background:#0C1014;
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     }
     .mt-page{
       width:320px;
+      min-height:100vh;
       background:#ffffff;
-      position:relative;
       overflow:hidden;
     }
     .mt-section{
@@ -32,54 +30,64 @@
 </head>
 <body>
   <div class="mt-page">
-    <div class="mt-section" style="height:450px;background:#b46e6e">
-      <div style="position:absolute;left:30px;top:40px;width:260px;font-size:18px;text-align:center;color:#111827;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Yangi matn</div>
-      <img src="Group 2089345765.png" style="position:absolute;left:20.5px;top:92px;width:279px;height:130px;border-radius:0px;border-width:0;border-style:solid;border-color:transparent;display:block;">
-      <a href="#" style="position:absolute;left:39px;top:245.00001525878906px;font-size:14px;color:#000000;background:#8b99b6;border-radius:999px;;border-width:0;;border-style:solid;;border-color:transparent;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;width:242px;;height:43px;">Tugma</a>
-      <div style="position:absolute;left:38px;top:311.00001525878906px;width:244px;height:76px;background:#000000;border-radius:1px;border-width:0;border-style:solid;border-color:transparent;"></div>
-      <div data-mt-timer="1" data-mt-hours="2" data-mt-minutes="5" data-mt-seconds="0" style="position:absolute;left:121.0687484741211px;top:337.00001525878906px;font-size:20px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">00:00</div>
+
+    <div class="mt-section" style="height:560px;background:#9e7070;">
+      <a href="#" style="position:absolute;left:43px;top:47px;font-size:14px;color:#f9fafb;background:#111827;border-radius:999px;padding:8px 16px;border:none;cursor:pointer;width:220px;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">Tugma</a>
+      <div data-mt-timer="1" data-mt-hours="6" data-mt-minutes="5" data-mt-seconds="0" style="position:absolute;left:123px;top:133.5px;font-size:20px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif">00:00</div>
     </div>
   </div>
 <script>
 document.addEventListener("DOMContentLoaded",function(){
-  var page=document.querySelector(".mt-page");
-  if(page){
-    var baseWidth=320;
-    function mtAutoscale(){
-      var screenWidth=window.innerWidth||document.documentElement.clientWidth;
-      var zoom=1;
-      if(screenWidth<=480){ zoom=screenWidth/baseWidth; }
-      page.style.transformOrigin="top center";
-      page.style.transform="scale("+zoom+")";
-      document.body.style.height=(page.offsetHeight * zoom)+"px";
-    }
-    mtAutoscale();
-    window.addEventListener("resize",mtAutoscale);
-  }
   var timers=document.querySelectorAll("[data-mt-timer]");
   timers.forEach(function(el){
     var hours=parseInt(el.getAttribute("data-mt-hours"))||0;
     var minutes=parseInt(el.getAttribute("data-mt-minutes"))||0;
     var seconds=parseInt(el.getAttribute("data-mt-seconds"))||0;
     var total=hours*3600+minutes*60+seconds;
-    function pad(n){ return (n<10?"0":"")+n; }
     function formatTime(t){
       var h=Math.floor(t/3600);
       var m=Math.floor((t%3600)/60);
       var s=t%60;
-      if(h>0){return pad(h)+":"+pad(m)+":"+pad(s);} 
-      return pad(m)+":"+pad(s);
+      if(h>0){
+        return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+      }
+      return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
     }
-    if(!total){el.textContent="00:00";return;}
+    if(!total){
+      el.textContent="00:00";
+      return;
+    }
     var remaining=total;
     el.textContent=formatTime(remaining);
     var interval=setInterval(function(){
       remaining--;
-      if(remaining<=0){clearInterval(interval);el.textContent="00:00";}
-      else{el.textContent=formatTime(remaining);} 
+      if(remaining<=0){
+        clearInterval(interval);
+        el.textContent="00:00";
+      }else{
+        el.textContent=formatTime(remaining);
+      }
     },1000);
   });
 });
-<\/script>
+</script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  var page=document.querySelector(".mt-page");
+  if(!page)return;
+  function adjust(){
+    var screenWidth=window.innerWidth||document.documentElement.clientWidth;
+    var baseWidth=320;
+    if(screenWidth>=480&&screenWidth<768)baseWidth=480;
+    else if(screenWidth>=768&&screenWidth<1200)baseWidth=768;
+    else if(screenWidth>=1200)baseWidth=1200;
+    var zoomLevel=screenWidth/baseWidth;
+    page.style.transformOrigin="top center";
+    page.style.transform="scale("+zoomLevel+")";
+  }
+  adjust();
+  window.addEventListener("resize",adjust);
+});
+</script>
 </body>
 </html>
