@@ -1,54 +1,17 @@
-<!DOCTYPE html>
-<html lang="uz">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sahifa</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      margin:0;
-      background:#0C1014;
-      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      min-height:100vh;
-    }
-    .mt-page{
-      width:320px;
-      background:#ffffff;
-      position:relative;
-      overflow:hidden;
-    }
-    .mt-section{
-      width:320px;
-      position:relative;
-      background:#ffffff;
-      overflow:hidden;
-      border-bottom:1px solid #e5e7eb;
-    }
-  </style>
-</head>
-<body>
-  <div class="mt-page">
-    <div class="mt-section" style="height:520px;background:#263f5e">
-      <div style="position:absolute;left:0px;top:39.5px;width:260px;font-size:25px;text-align:left;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Sardor Sobirov</div>
-      <a href="#" style="position:absolute;left:15px;top:203.00001525878906px;font-size:14px;color:#f9fafb;background:#111827;border-radius:999px;;border-width:0;;border-style:solid;;border-color:transparent;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;width:290px;;height:38px;">Tugma</a>
-      <div style="position:absolute;left:15.5px;top:105px;width:289px;height:69px;background:#bcd585;border-radius:1px;border-width:0;border-style:solid;border-color:#ff0000;"></div>
-      <img src="Group 2089345765.png" style="position:absolute;left:30px;top:262.6374969482422px;width:260px;height:160px;border-radius:0px;border-width:0;border-style:solid;border-color:transparent;display:block;">
-      <div data-mt-timer="1" data-mt-hours="1" data-mt-minutes="5" data-mt-seconds="0" style="position:absolute;left:121.0625px;top:443.99998474121094px;font-size:20px;color:#ff0000;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">00:00</div>
-    </div>
-  </div>
-<script>
+<!DOCTYPE html>\n<html lang="uz">\n<head>\n  <meta charset="UTF-8">\n  <meta name="viewport" content="width=device-width, initial-scale=1">\n  <title>Sahifa</title>\n  <style>\n    *{box-sizing:border-box;margin:0;padding:0}\n    body{\n      margin:0;\n      background:#0C1014;\n      font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;\n      display:flex;\n      justify-content:center;\n      align-items:flex-start;\n      min-height:100vh;\n    }\n    .mt-page{\n      width:320px;\n      background:#ffffff;\n      position:relative;\n      overflow:hidden;\n    }\n    .mt-section{\n      width:320px;\n      position:relative;\n      background:#ffffff;\n      overflow:hidden;\n      border-bottom:1px solid #e5e7eb;\n    }\n  </style>\n</head>\n<body>\n  <div class="mt-page">
+    <div class="mt-section" style="height:560px;background:#177318">
+      <div style="position:absolute;left:30px;top:40px;width:260px;font-size:22px;text-align:center;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">Yangi matn</div>
+      <div style="position:absolute;left:22px;top:90.5px;width:276px;height:176px;background:#e5e7eb;border-radius:1px;border-width:0;border-style:solid;border-color:transparent;"></div>
+      <a href="#" style="position:absolute;left:15.5px;top:291.00001525878906px;font-size:21px;color:#000000;background:#ffffff;border-radius:999px;;border-width:0;;border-style:solid;;border-color:transparent;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;width:289px;;height:46px;">Tugma</a>
+    </div>\n  </div>\n<script>
 document.addEventListener("DOMContentLoaded",function(){
   var page=document.querySelector(".mt-page");
   if(page){
     var baseWidth=320;
     function mtAutoscale(){
       var screenWidth=window.innerWidth||document.documentElement.clientWidth;
-      var zoom=1;
-      if(screenWidth<=480){ zoom=screenWidth/baseWidth; }
+      var zoom=screenWidth/baseWidth;
+      if(zoom>1){zoom=1;}
       page.style.transformOrigin="top center";
       page.style.transform="scale("+zoom+")";
       document.body.style.height=(page.offsetHeight*zoom)+"px";
@@ -56,29 +19,28 @@ document.addEventListener("DOMContentLoaded",function(){
     mtAutoscale();
     window.addEventListener("resize",mtAutoscale);
   }
+  function pad2(n){return (n<10?"0":"")+n;}
   var timers=document.querySelectorAll("[data-mt-timer]");
   timers.forEach(function(el){
     var hours=parseInt(el.getAttribute("data-mt-hours"))||0;
     var minutes=parseInt(el.getAttribute("data-mt-minutes"))||0;
     var seconds=parseInt(el.getAttribute("data-mt-seconds"))||0;
     var total=hours*3600+minutes*60+seconds;
+    if(!total){el.textContent="00:00";return;}
     function formatTime(t){
       var h=Math.floor(t/3600);
       var m=Math.floor((t%3600)/60);
       var s=t%60;
-      if(h>0){return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");}
-      return String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+      if(h>0){return pad2(h)+":"+pad2(m)+":"+pad2(s);} 
+      return pad2(m)+":"+pad2(s);
     }
-    if(!total){el.textContent="00:00";return;}
     var remaining=total;
     el.textContent=formatTime(remaining);
     var interval=setInterval(function(){
-      remaining--;
+      remaining--; 
       if(remaining<=0){clearInterval(interval);el.textContent="00:00";}
-      else{el.textContent=formatTime(remaining);}
+      else{el.textContent=formatTime(remaining);} 
     },1000);
   });
 });
-<\/script>
-</body>
-</html>
+<\/script>\n</body>\n</html>
