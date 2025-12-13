@@ -32,13 +32,15 @@
 </head>
 <body>
   <div class="mt-page">
-    <div class="mt-section" style="height:800px;background:#ffffff">
-      <img src="las mobile (23).png" style="position:absolute;left:0px;top:0px;width:320px;height:800px;border-radius:0px;border-width:0;border-style:solid;border-color:transparent;display:block;">
-<a href="#" style="position:absolute;left:52px;top:263px;font-size:14px;color:#f9fafb;background:#111827;border-radius:999px;;border-width:0;;border-style:solid;;border-color:transparent;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial, sans-serif;width:220px;;height:50px;">Tugma</a>
-<div style="position:absolute;left:30px;top:92px;width:260px;font-size:22px;text-align:center;color:#ededed;font-family:Arial,sans-serif;">Uy xarid qiling</div>
-<div style="position:absolute;left:36px;top:144px;width:248px;height:92px;background:#e5e7eb;border-radius:1px;border-width:0;border-style:solid;border-color:transparent;"></div>
-<div data-mt-timer="1" data-mt-hours="0" data-mt-minutes="5" data-mt-seconds="0" style="position:absolute;left:143px;top:329px;font-size:20px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">00:00</div>
-<img src="830de336299f92d541ffaf0b4f81ede6.png" style="position:absolute;left:21px;top:25px;width:41px;height:37px;border-radius:0px;border-width:0;border-style:solid;border-color:transparent;display:block;">
+    <div class="mt-section" style="height:680px;background:#ffffff">
+      <img src="las mobile (23).png" style="position:absolute;left:0px;top:0px;width:334px;height:680px;border-radius:0px;border-width:0;border-style:solid;border-color:transparent;display:block;">
+<div style="position:absolute;left:227px;top:12px;width:82px;font-size:18px;text-align:left;color:#ffffff;font-family:Arial,sans-serif;">12-dekabr</div>
+<div style="position:absolute;left:215px;top:35.5px;width:117px;font-size:13px;text-align:left;color:#ffffff;font-family:Arial,sans-serif;">Taqdimot sanasi</div>
+<img src="830de336299f92d541ffaf0b4f81ede6.png" style="position:absolute;left:20px;top:13px;width:41px;height:36px;border-radius:0px;border-width:0;border-style:solid;border-color:transparent;display:block;">
+<div style="position:absolute;left:10px;top:75px;width:300px;font-size:27px;text-align:center;color:#ffffff;font-family:Arial,sans-serif;">Samarqand shaxridan 40% chegirma asosida Xonadon xarid qiling</div>
+<div style="position:absolute;left:30px;top:184.50001525878906px;width:260px;font-size:13px;text-align:center;color:#ffffff;font-family:Arial,sans-serif;">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the </div>
+<a href="#" style="position:absolute;left:10px;top:256.00001525878906px;font-size:14px;color:#000000;background:#fff199;border-radius:999px;;border-width:0;;border-style:solid;;border-color:transparent;;display:flex;align-items:center;justify-content:center;text-decoration:none;font-family:Arial, sans-serif;width:300px;;height:50px;">Telegram kanalga o'tish</a>
+<div data-mt-timer="1" data-mt-hours="0" data-mt-minutes="2" data-mt-seconds="0" style="position:absolute;left:134.97500038146973px;top:324.00001525878906px;font-size:20px;color:#ffffff;font-family:Arial,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;">00:00</div>
     </div>
   </div>
 <script>
@@ -92,5 +94,26 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 </script>
+  <script>
+
+document.addEventListener('keydown', function (e) {
+  if (
+    e.key === "F12" || // F12
+    (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'U'].includes(e.key)) || // Windows DevTools
+    (e.ctrlKey && e.key.toUpperCase() === 'U') || // Windows Ctrl+U
+    (e.metaKey && e.altKey && ['I', 'J', 'C', 'U'].includes(e.key)) || // Mac DevTools
+    (e.metaKey && e.key.toUpperCase() === 'U') // Mac Cmd+U
+  ) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }
+});
+
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault();
+});
+</script>
+
 </body>
 </html>
